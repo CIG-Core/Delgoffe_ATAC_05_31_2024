@@ -1,0 +1,16 @@
+Module	Section	Sample Name	Source
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_0	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_0.out.o3357132
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_10	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_10.out.o3357142
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_11	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_11.out.o3357143
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_12	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_12.out.o3357144
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_13	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_13.out.o3357145
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_14	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_14.out.o3357131
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_1	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_1.out.o3357133
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_2	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_2.out.o3357134
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_3	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_3.out.o3357135
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_4	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_4.out.o3357136
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_5	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_5.out.o3357137
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_6	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_6.out.o3357138
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_7	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_7.out.o3357139
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_8	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_8.out.o3357140
+Bowtie 2 / HiSAT2	all_sections	bowtie2-3357131_9	/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_9.out.o3357141

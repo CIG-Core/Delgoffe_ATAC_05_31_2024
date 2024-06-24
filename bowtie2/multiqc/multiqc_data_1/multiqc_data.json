@@ -1,0 +1,762 @@
+{
+    "report_data_sources": {
+        "Bowtie 2 / HiSAT2": {
+            "all_sections": {
+                "bowtie2-3357131_0": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_0.out.o3357132",
+                "bowtie2-3357131_10": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_10.out.o3357142",
+                "bowtie2-3357131_11": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_11.out.o3357143",
+                "bowtie2-3357131_12": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_12.out.o3357144",
+                "bowtie2-3357131_13": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_13.out.o3357145",
+                "bowtie2-3357131_14": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_14.out.o3357131",
+                "bowtie2-3357131_1": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_1.out.o3357133",
+                "bowtie2-3357131_2": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_2.out.o3357134",
+                "bowtie2-3357131_3": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_3.out.o3357135",
+                "bowtie2-3357131_4": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_4.out.o3357136",
+                "bowtie2-3357131_5": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_5.out.o3357137",
+                "bowtie2-3357131_6": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_6.out.o3357138",
+                "bowtie2-3357131_7": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_7.out.o3357139",
+                "bowtie2-3357131_8": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_8.out.o3357140",
+                "bowtie2-3357131_9": "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_9.out.o3357141"
+            }
+        }
+    },
+    "report_general_stats_data": [
+        {
+            "bowtie2-3357131_0": {
+                "total_reads": 39505807,
+                "paired_total": 39505807,
+                "paired_aligned_none": 6286921,
+                "paired_aligned_one": 26381159,
+                "paired_aligned_multi": 6837727,
+                "paired_aligned_discord_one": 3613872,
+                "paired_aligned_mate_none": 2484825,
+                "paired_aligned_mate_one": 943778,
+                "paired_aligned_mate_multi": 1917495,
+                "overall_alignment_rate": 96.86,
+                "paired_aligned_mate_multi_halved": 958747.5,
+                "paired_aligned_mate_none_halved": 1242412.5,
+                "paired_aligned_mate_one_halved": 471889.0
+            },
+            "bowtie2-3357131_10": {
+                "total_reads": 31183927,
+                "paired_total": 31183927,
+                "paired_aligned_none": 6010337,
+                "paired_aligned_one": 20166894,
+                "paired_aligned_multi": 5006696,
+                "paired_aligned_discord_one": 3969904,
+                "paired_aligned_mate_none": 1249664,
+                "paired_aligned_mate_one": 982151,
+                "paired_aligned_mate_multi": 1849051,
+                "overall_alignment_rate": 98.0,
+                "paired_aligned_mate_multi_halved": 924525.5,
+                "paired_aligned_mate_none_halved": 624832.0,
+                "paired_aligned_mate_one_halved": 491075.5
+            },
+            "bowtie2-3357131_11": {
+                "total_reads": 30634961,
+                "paired_total": 30634961,
+                "paired_aligned_none": 6779750,
+                "paired_aligned_one": 19216299,
+                "paired_aligned_multi": 4638912,
+                "paired_aligned_discord_one": 4621824,
+                "paired_aligned_mate_none": 1164658,
+                "paired_aligned_mate_one": 1067673,
+                "paired_aligned_mate_multi": 2083521,
+                "overall_alignment_rate": 98.1,
+                "paired_aligned_mate_multi_halved": 1041760.5,
+                "paired_aligned_mate_none_halved": 582329.0,
+                "paired_aligned_mate_one_halved": 533836.5
+            },
+            "bowtie2-3357131_12": {
+                "total_reads": 33718481,
+                "paired_total": 33718481,
+                "paired_aligned_none": 4216926,
+                "paired_aligned_one": 23428877,
+                "paired_aligned_multi": 6072678,
+                "paired_aligned_discord_one": 2700203,
+                "paired_aligned_mate_none": 1069531,
+                "paired_aligned_mate_one": 644742,
+                "paired_aligned_mate_multi": 1319173,
+                "overall_alignment_rate": 98.41,
+                "paired_aligned_mate_multi_halved": 659586.5,
+                "paired_aligned_mate_none_halved": 534765.5,
+                "paired_aligned_mate_one_halved": 322371.0
+            },
+            "bowtie2-3357131_13": {
+                "total_reads": 31608864,
+                "paired_total": 31608864,
+                "paired_aligned_none": 4670340,
+                "paired_aligned_one": 21337094,
+                "paired_aligned_multi": 5601430,
+                "paired_aligned_discord_one": 2931905,
+                "paired_aligned_mate_none": 1149972,
+                "paired_aligned_mate_one": 774447,
+                "paired_aligned_mate_multi": 1552451,
+                "overall_alignment_rate": 98.18,
+                "paired_aligned_mate_multi_halved": 776225.5,
+                "paired_aligned_mate_none_halved": 574986.0,
+                "paired_aligned_mate_one_halved": 387223.5
+            },
+            "bowtie2-3357131_14": {
+                "total_reads": 42061288,
+                "paired_total": 42061288,
+                "paired_aligned_none": 4946601,
+                "paired_aligned_one": 29431400,
+                "paired_aligned_multi": 7683287,
+                "paired_aligned_discord_one": 2972010,
+                "paired_aligned_mate_none": 1675730,
+                "paired_aligned_mate_one": 824428,
+                "paired_aligned_mate_multi": 1449024,
+                "overall_alignment_rate": 98.01,
+                "paired_aligned_mate_multi_halved": 724512.0,
+                "paired_aligned_mate_none_halved": 837865.0,
+                "paired_aligned_mate_one_halved": 412214.0
+            },
+            "bowtie2-3357131_1": {
+                "total_reads": 36007899,
+                "paired_total": 36007899,
+                "paired_aligned_none": 5953316,
+                "paired_aligned_one": 24358512,
+                "paired_aligned_multi": 5696071,
+                "paired_aligned_discord_one": 3464695,
+                "paired_aligned_mate_none": 2407461,
+                "paired_aligned_mate_one": 890614,
+                "paired_aligned_mate_multi": 1679167,
+                "overall_alignment_rate": 96.66,
+                "paired_aligned_mate_multi_halved": 839583.5,
+                "paired_aligned_mate_none_halved": 1203730.5,
+                "paired_aligned_mate_one_halved": 445307.0
+            },
+            "bowtie2-3357131_2": {
+                "total_reads": 36187771,
+                "paired_total": 36187771,
+                "paired_aligned_none": 5374800,
+                "paired_aligned_one": 24778515,
+                "paired_aligned_multi": 6034456,
+                "paired_aligned_discord_one": 3155290,
+                "paired_aligned_mate_none": 2069598,
+                "paired_aligned_mate_one": 820077,
+                "paired_aligned_mate_multi": 1549345,
+                "overall_alignment_rate": 97.14,
+                "paired_aligned_mate_multi_halved": 774672.5,
+                "paired_aligned_mate_none_halved": 1034799.0,
+                "paired_aligned_mate_one_halved": 410038.5
+            },
+            "bowtie2-3357131_3": {
+                "total_reads": 20399056,
+                "paired_total": 20399056,
+                "paired_aligned_none": 4786892,
+                "paired_aligned_one": 12317269,
+                "paired_aligned_multi": 3294895,
+                "paired_aligned_discord_one": 3030900,
+                "paired_aligned_mate_none": 1012779,
+                "paired_aligned_mate_one": 782997,
+                "paired_aligned_mate_multi": 1716208,
+                "overall_alignment_rate": 97.52,
+                "paired_aligned_mate_multi_halved": 858104.0,
+                "paired_aligned_mate_none_halved": 506389.5,
+                "paired_aligned_mate_one_halved": 391498.5
+            },
+            "bowtie2-3357131_4": {
+                "total_reads": 30301915,
+                "paired_total": 30301915,
+                "paired_aligned_none": 5233638,
+                "paired_aligned_one": 19812279,
+                "paired_aligned_multi": 5255998,
+                "paired_aligned_discord_one": 2948034,
+                "paired_aligned_mate_none": 2127914,
+                "paired_aligned_mate_one": 788664,
+                "paired_aligned_mate_multi": 1654630,
+                "overall_alignment_rate": 96.49,
+                "paired_aligned_mate_multi_halved": 827315.0,
+                "paired_aligned_mate_none_halved": 1063957.0,
+                "paired_aligned_mate_one_halved": 394332.0
+            },
+            "bowtie2-3357131_5": {
+                "total_reads": 34599523,
+                "paired_total": 34599523,
+                "paired_aligned_none": 5252476,
+                "paired_aligned_one": 23368452,
+                "paired_aligned_multi": 5978595,
+                "paired_aligned_discord_one": 3040313,
+                "paired_aligned_mate_none": 1982555,
+                "paired_aligned_mate_one": 825419,
+                "paired_aligned_mate_multi": 1616352,
+                "overall_alignment_rate": 97.13,
+                "paired_aligned_mate_multi_halved": 808176.0,
+                "paired_aligned_mate_none_halved": 991277.5,
+                "paired_aligned_mate_one_halved": 412709.5
+            },
+            "bowtie2-3357131_6": {
+                "total_reads": 33625073,
+                "paired_total": 33625073,
+                "paired_aligned_none": 4449975,
+                "paired_aligned_one": 22757461,
+                "paired_aligned_multi": 6417637,
+                "paired_aligned_discord_one": 2589580,
+                "paired_aligned_mate_none": 1674066,
+                "paired_aligned_mate_one": 711490,
+                "paired_aligned_mate_multi": 1335234,
+                "overall_alignment_rate": 97.51,
+                "paired_aligned_mate_multi_halved": 667617.0,
+                "paired_aligned_mate_none_halved": 837033.0,
+                "paired_aligned_mate_one_halved": 355745.0
+            },
+            "bowtie2-3357131_7": {
+                "total_reads": 36741700,
+                "paired_total": 36741700,
+                "paired_aligned_none": 5120258,
+                "paired_aligned_one": 24678464,
+                "paired_aligned_multi": 6942978,
+                "paired_aligned_discord_one": 2992933,
+                "paired_aligned_mate_none": 2032339,
+                "paired_aligned_mate_one": 770651,
+                "paired_aligned_mate_multi": 1451660,
+                "overall_alignment_rate": 97.23,
+                "paired_aligned_mate_multi_halved": 725830.0,
+                "paired_aligned_mate_none_halved": 1016169.5,
+                "paired_aligned_mate_one_halved": 385325.5
+            },
+            "bowtie2-3357131_8": {
+                "total_reads": 42403297,
+                "paired_total": 42403297,
+                "paired_aligned_none": 5657770,
+                "paired_aligned_one": 29130378,
+                "paired_aligned_multi": 7615149,
+                "paired_aligned_discord_one": 3603462,
+                "paired_aligned_mate_none": 1546207,
+                "paired_aligned_mate_one": 926666,
+                "paired_aligned_mate_multi": 1635743,
+                "overall_alignment_rate": 98.18,
+                "paired_aligned_mate_multi_halved": 817871.5,
+                "paired_aligned_mate_none_halved": 773103.5,
+                "paired_aligned_mate_one_halved": 463333.0
+            },
+            "bowtie2-3357131_9": {
+                "total_reads": 39420494,
+                "paired_total": 39420494,
+                "paired_aligned_none": 5259877,
+                "paired_aligned_one": 26837212,
+                "paired_aligned_multi": 7323405,
+                "paired_aligned_discord_one": 3167307,
+                "paired_aligned_mate_none": 1762232,
+                "paired_aligned_mate_one": 863271,
+                "paired_aligned_mate_multi": 1559637,
+                "overall_alignment_rate": 97.76,
+                "paired_aligned_mate_multi_halved": 779818.5,
+                "paired_aligned_mate_none_halved": 881116.0,
+                "paired_aligned_mate_one_halved": 431635.5
+            }
+        }
+    ],
+    "report_general_stats_headers": [
+        {
+            "overall_alignment_rate": {
+                "title": "% Aligned",
+                "description": "overall alignment rate",
+                "max": 100,
+                "min": 0,
+                "suffix": "%",
+                "scale": "YlGn",
+                "namespace": "Bowtie 2 / HiSAT2",
+                "rid": "mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate",
+                "format": "{:,.1f}",
+                "colour": "55,126,184",
+                "hidden": null,
+                "ceiling": null,
+                "floor": null,
+                "minRange": null,
+                "shared_key": null,
+                "modify": null,
+                "placement": 1000.0,
+                "dmax": 100.0,
+                "dmin": 0.0
+            }
+        }
+    ],
+    "report_multiqc_command": "/ihome/crc/install/multiqc/1.19/python3.10/bin/multiqc bowtie2-3357131_0.out.o3357132 bowtie2-3357131_10.out.o3357142 bowtie2-3357131_11.out.o3357143 bowtie2-3357131_12.out.o3357144 bowtie2-3357131_13.out.o3357145 bowtie2-3357131_14.out.o3357131 bowtie2-3357131_1.out.o3357133 bowtie2-3357131_2.out.o3357134 bowtie2-3357131_3.out.o3357135 bowtie2-3357131_4.out.o3357136 bowtie2-3357131_5.out.o3357137 bowtie2-3357131_6.out.o3357138 bowtie2-3357131_7.out.o3357139 bowtie2-3357131_8.out.o3357140 bowtie2-3357131_9.out.o3357141 multiqc_data multiqc_report.html",
+    "report_plot_data": {
+        "bowtie2_pe_plot": {
+            "plot_type": "bar_graph",
+            "samples": [
+                [
+                    "bowtie2-3357131_0",
+                    "bowtie2-3357131_1",
+                    "bowtie2-3357131_10",
+                    "bowtie2-3357131_11",
+                    "bowtie2-3357131_12",
+                    "bowtie2-3357131_13",
+                    "bowtie2-3357131_14",
+                    "bowtie2-3357131_2",
+                    "bowtie2-3357131_3",
+                    "bowtie2-3357131_4",
+                    "bowtie2-3357131_5",
+                    "bowtie2-3357131_6",
+                    "bowtie2-3357131_7",
+                    "bowtie2-3357131_8",
+                    "bowtie2-3357131_9"
+                ]
+            ],
+            "datasets": [
+                [
+                    {
+                        "name": "PE mapped uniquely",
+                        "data": [
+                            26381159.0,
+                            24358512.0,
+                            20166894.0,
+                            19216299.0,
+                            23428877.0,
+                            21337094.0,
+                            29431400.0,
+                            24778515.0,
+                            12317269.0,
+                            19812279.0,
+                            23368452.0,
+                            22757461.0,
+                            24678464.0,
+                            29130378.0,
+                            26837212.0
+                        ],
+                        "color": "#20568f"
+                    },
+                    {
+                        "name": "PE mapped discordantly uniquely",
+                        "data": [
+                            3613872.0,
+                            3464695.0,
+                            3969904.0,
+                            4621824.0,
+                            2700203.0,
+                            2931905.0,
+                            2972010.0,
+                            3155290.0,
+                            3030900.0,
+                            2948034.0,
+                            3040313.0,
+                            2589580.0,
+                            2992933.0,
+                            3603462.0,
+                            3167307.0
+                        ],
+                        "color": "#5c94ca"
+                    },
+                    {
+                        "name": "PE one mate mapped uniquely",
+                        "data": [
+                            471889.0,
+                            445307.0,
+                            491075.5,
+                            533836.5,
+                            322371.0,
+                            387223.5,
+                            412214.0,
+                            410038.5,
+                            391498.5,
+                            394332.0,
+                            412709.5,
+                            355745.0,
+                            385325.5,
+                            463333.0,
+                            431635.5
+                        ],
+                        "color": "#95ceff"
+                    },
+                    {
+                        "name": "PE multimapped",
+                        "data": [
+                            6837727.0,
+                            5696071.0,
+                            5006696.0,
+                            4638912.0,
+                            6072678.0,
+                            5601430.0,
+                            7683287.0,
+                            6034456.0,
+                            3294895.0,
+                            5255998.0,
+                            5978595.0,
+                            6417637.0,
+                            6942978.0,
+                            7615149.0,
+                            7323405.0
+                        ],
+                        "color": "#f7a35c"
+                    },
+                    {
+                        "name": "PE one mate multimapped",
+                        "data": [
+                            958747.5,
+                            839583.5,
+                            924525.5,
+                            1041760.5,
+                            659586.5,
+                            776225.5,
+                            724512.0,
+                            774672.5,
+                            858104.0,
+                            827315.0,
+                            808176.0,
+                            667617.0,
+                            725830.0,
+                            817871.5,
+                            779818.5
+                        ],
+                        "color": "#ffeb75"
+                    },
+                    {
+                        "name": "PE neither mate aligned",
+                        "data": [
+                            1242412.5,
+                            1203730.5,
+                            624832.0,
+                            582329.0,
+                            534765.5,
+                            574986.0,
+                            837865.0,
+                            1034799.0,
+                            506389.5,
+                            1063957.0,
+                            991277.5,
+                            837033.0,
+                            1016169.5,
+                            773103.5,
+                            881116.0
+                        ],
+                        "color": "#981919"
+                    }
+                ]
+            ],
+            "config": {
+                "ylab": "# Reads",
+                "cpswitch_counts_label": "Number of Reads",
+                "id": "bowtie2_pe_plot",
+                "title": "Bowtie 2: PE Alignment Scores"
+            }
+        }
+    },
+    "report_saved_raw_data": {
+        "multiqc_bowtie2": {
+            "bowtie2-3357131_0": {
+                "total_reads": 39505807,
+                "paired_total": 39505807,
+                "paired_aligned_none": 6286921,
+                "paired_aligned_one": 26381159,
+                "paired_aligned_multi": 6837727,
+                "paired_aligned_discord_one": 3613872,
+                "paired_aligned_mate_none": 2484825,
+                "paired_aligned_mate_one": 943778,
+                "paired_aligned_mate_multi": 1917495,
+                "overall_alignment_rate": 96.86,
+                "paired_aligned_mate_multi_halved": 958747.5,
+                "paired_aligned_mate_none_halved": 1242412.5,
+                "paired_aligned_mate_one_halved": 471889.0
+            },
+            "bowtie2-3357131_10": {
+                "total_reads": 31183927,
+                "paired_total": 31183927,
+                "paired_aligned_none": 6010337,
+                "paired_aligned_one": 20166894,
+                "paired_aligned_multi": 5006696,
+                "paired_aligned_discord_one": 3969904,
+                "paired_aligned_mate_none": 1249664,
+                "paired_aligned_mate_one": 982151,
+                "paired_aligned_mate_multi": 1849051,
+                "overall_alignment_rate": 98.0,
+                "paired_aligned_mate_multi_halved": 924525.5,
+                "paired_aligned_mate_none_halved": 624832.0,
+                "paired_aligned_mate_one_halved": 491075.5
+            },
+            "bowtie2-3357131_11": {
+                "total_reads": 30634961,
+                "paired_total": 30634961,
+                "paired_aligned_none": 6779750,
+                "paired_aligned_one": 19216299,
+                "paired_aligned_multi": 4638912,
+                "paired_aligned_discord_one": 4621824,
+                "paired_aligned_mate_none": 1164658,
+                "paired_aligned_mate_one": 1067673,
+                "paired_aligned_mate_multi": 2083521,
+                "overall_alignment_rate": 98.1,
+                "paired_aligned_mate_multi_halved": 1041760.5,
+                "paired_aligned_mate_none_halved": 582329.0,
+                "paired_aligned_mate_one_halved": 533836.5
+            },
+            "bowtie2-3357131_12": {
+                "total_reads": 33718481,
+                "paired_total": 33718481,
+                "paired_aligned_none": 4216926,
+                "paired_aligned_one": 23428877,
+                "paired_aligned_multi": 6072678,
+                "paired_aligned_discord_one": 2700203,
+                "paired_aligned_mate_none": 1069531,
+                "paired_aligned_mate_one": 644742,
+                "paired_aligned_mate_multi": 1319173,
+                "overall_alignment_rate": 98.41,
+                "paired_aligned_mate_multi_halved": 659586.5,
+                "paired_aligned_mate_none_halved": 534765.5,
+                "paired_aligned_mate_one_halved": 322371.0
+            },
+            "bowtie2-3357131_13": {
+                "total_reads": 31608864,
+                "paired_total": 31608864,
+                "paired_aligned_none": 4670340,
+                "paired_aligned_one": 21337094,
+                "paired_aligned_multi": 5601430,
+                "paired_aligned_discord_one": 2931905,
+                "paired_aligned_mate_none": 1149972,
+                "paired_aligned_mate_one": 774447,
+                "paired_aligned_mate_multi": 1552451,
+                "overall_alignment_rate": 98.18,
+                "paired_aligned_mate_multi_halved": 776225.5,
+                "paired_aligned_mate_none_halved": 574986.0,
+                "paired_aligned_mate_one_halved": 387223.5
+            },
+            "bowtie2-3357131_14": {
+                "total_reads": 42061288,
+                "paired_total": 42061288,
+                "paired_aligned_none": 4946601,
+                "paired_aligned_one": 29431400,
+                "paired_aligned_multi": 7683287,
+                "paired_aligned_discord_one": 2972010,
+                "paired_aligned_mate_none": 1675730,
+                "paired_aligned_mate_one": 824428,
+                "paired_aligned_mate_multi": 1449024,
+                "overall_alignment_rate": 98.01,
+                "paired_aligned_mate_multi_halved": 724512.0,
+                "paired_aligned_mate_none_halved": 837865.0,
+                "paired_aligned_mate_one_halved": 412214.0
+            },
+            "bowtie2-3357131_1": {
+                "total_reads": 36007899,
+                "paired_total": 36007899,
+                "paired_aligned_none": 5953316,
+                "paired_aligned_one": 24358512,
+                "paired_aligned_multi": 5696071,
+                "paired_aligned_discord_one": 3464695,
+                "paired_aligned_mate_none": 2407461,
+                "paired_aligned_mate_one": 890614,
+                "paired_aligned_mate_multi": 1679167,
+                "overall_alignment_rate": 96.66,
+                "paired_aligned_mate_multi_halved": 839583.5,
+                "paired_aligned_mate_none_halved": 1203730.5,
+                "paired_aligned_mate_one_halved": 445307.0
+            },
+            "bowtie2-3357131_2": {
+                "total_reads": 36187771,
+                "paired_total": 36187771,
+                "paired_aligned_none": 5374800,
+                "paired_aligned_one": 24778515,
+                "paired_aligned_multi": 6034456,
+                "paired_aligned_discord_one": 3155290,
+                "paired_aligned_mate_none": 2069598,
+                "paired_aligned_mate_one": 820077,
+                "paired_aligned_mate_multi": 1549345,
+                "overall_alignment_rate": 97.14,
+                "paired_aligned_mate_multi_halved": 774672.5,
+                "paired_aligned_mate_none_halved": 1034799.0,
+                "paired_aligned_mate_one_halved": 410038.5
+            },
+            "bowtie2-3357131_3": {
+                "total_reads": 20399056,
+                "paired_total": 20399056,
+                "paired_aligned_none": 4786892,
+                "paired_aligned_one": 12317269,
+                "paired_aligned_multi": 3294895,
+                "paired_aligned_discord_one": 3030900,
+                "paired_aligned_mate_none": 1012779,
+                "paired_aligned_mate_one": 782997,
+                "paired_aligned_mate_multi": 1716208,
+                "overall_alignment_rate": 97.52,
+                "paired_aligned_mate_multi_halved": 858104.0,
+                "paired_aligned_mate_none_halved": 506389.5,
+                "paired_aligned_mate_one_halved": 391498.5
+            },
+            "bowtie2-3357131_4": {
+                "total_reads": 30301915,
+                "paired_total": 30301915,
+                "paired_aligned_none": 5233638,
+                "paired_aligned_one": 19812279,
+                "paired_aligned_multi": 5255998,
+                "paired_aligned_discord_one": 2948034,
+                "paired_aligned_mate_none": 2127914,
+                "paired_aligned_mate_one": 788664,
+                "paired_aligned_mate_multi": 1654630,
+                "overall_alignment_rate": 96.49,
+                "paired_aligned_mate_multi_halved": 827315.0,
+                "paired_aligned_mate_none_halved": 1063957.0,
+                "paired_aligned_mate_one_halved": 394332.0
+            },
+            "bowtie2-3357131_5": {
+                "total_reads": 34599523,
+                "paired_total": 34599523,
+                "paired_aligned_none": 5252476,
+                "paired_aligned_one": 23368452,
+                "paired_aligned_multi": 5978595,
+                "paired_aligned_discord_one": 3040313,
+                "paired_aligned_mate_none": 1982555,
+                "paired_aligned_mate_one": 825419,
+                "paired_aligned_mate_multi": 1616352,
+                "overall_alignment_rate": 97.13,
+                "paired_aligned_mate_multi_halved": 808176.0,
+                "paired_aligned_mate_none_halved": 991277.5,
+                "paired_aligned_mate_one_halved": 412709.5
+            },
+            "bowtie2-3357131_6": {
+                "total_reads": 33625073,
+                "paired_total": 33625073,
+                "paired_aligned_none": 4449975,
+                "paired_aligned_one": 22757461,
+                "paired_aligned_multi": 6417637,
+                "paired_aligned_discord_one": 2589580,
+                "paired_aligned_mate_none": 1674066,
+                "paired_aligned_mate_one": 711490,
+                "paired_aligned_mate_multi": 1335234,
+                "overall_alignment_rate": 97.51,
+                "paired_aligned_mate_multi_halved": 667617.0,
+                "paired_aligned_mate_none_halved": 837033.0,
+                "paired_aligned_mate_one_halved": 355745.0
+            },
+            "bowtie2-3357131_7": {
+                "total_reads": 36741700,
+                "paired_total": 36741700,
+                "paired_aligned_none": 5120258,
+                "paired_aligned_one": 24678464,
+                "paired_aligned_multi": 6942978,
+                "paired_aligned_discord_one": 2992933,
+                "paired_aligned_mate_none": 2032339,
+                "paired_aligned_mate_one": 770651,
+                "paired_aligned_mate_multi": 1451660,
+                "overall_alignment_rate": 97.23,
+                "paired_aligned_mate_multi_halved": 725830.0,
+                "paired_aligned_mate_none_halved": 1016169.5,
+                "paired_aligned_mate_one_halved": 385325.5
+            },
+            "bowtie2-3357131_8": {
+                "total_reads": 42403297,
+                "paired_total": 42403297,
+                "paired_aligned_none": 5657770,
+                "paired_aligned_one": 29130378,
+                "paired_aligned_multi": 7615149,
+                "paired_aligned_discord_one": 3603462,
+                "paired_aligned_mate_none": 1546207,
+                "paired_aligned_mate_one": 926666,
+                "paired_aligned_mate_multi": 1635743,
+                "overall_alignment_rate": 98.18,
+                "paired_aligned_mate_multi_halved": 817871.5,
+                "paired_aligned_mate_none_halved": 773103.5,
+                "paired_aligned_mate_one_halved": 463333.0
+            },
+            "bowtie2-3357131_9": {
+                "total_reads": 39420494,
+                "paired_total": 39420494,
+                "paired_aligned_none": 5259877,
+                "paired_aligned_one": 26837212,
+                "paired_aligned_multi": 7323405,
+                "paired_aligned_discord_one": 3167307,
+                "paired_aligned_mate_none": 1762232,
+                "paired_aligned_mate_one": 863271,
+                "paired_aligned_mate_multi": 1559637,
+                "overall_alignment_rate": 97.76,
+                "paired_aligned_mate_multi_halved": 779818.5,
+                "paired_aligned_mate_none_halved": 881116.0,
+                "paired_aligned_mate_one_halved": 431635.5
+            }
+        },
+        "multiqc_general_stats": {
+            "bowtie2-3357131_0": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 96.86
+            },
+            "bowtie2-3357131_10": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 98.0
+            },
+            "bowtie2-3357131_11": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 98.1
+            },
+            "bowtie2-3357131_12": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 98.41
+            },
+            "bowtie2-3357131_13": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 98.18
+            },
+            "bowtie2-3357131_14": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 98.01
+            },
+            "bowtie2-3357131_1": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 96.66
+            },
+            "bowtie2-3357131_2": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 97.14
+            },
+            "bowtie2-3357131_3": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 97.52
+            },
+            "bowtie2-3357131_4": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 96.49
+            },
+            "bowtie2-3357131_5": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 97.13
+            },
+            "bowtie2-3357131_6": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 97.51
+            },
+            "bowtie2-3357131_7": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 97.23
+            },
+            "bowtie2-3357131_8": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 98.18
+            },
+            "bowtie2-3357131_9": {
+                "Bowtie 2 / HiSAT2_mqc-generalstats-bowtie_2_hisat2-overall_alignment_rate": 97.76
+            }
+        }
+    },
+    "config_analysis_dir_abs": [
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_0.out.o3357132",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_10.out.o3357142",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_11.out.o3357143",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_12.out.o3357144",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_13.out.o3357145",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_14.out.o3357131",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_1.out.o3357133",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_2.out.o3357134",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_3.out.o3357135",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_4.out.o3357136",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_5.out.o3357137",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_6.out.o3357138",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_7.out.o3357139",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_8.out.o3357140",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/bowtie2-3357131_9.out.o3357141",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/multiqc_data",
+        "/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2/multiqc/multiqc_report.html"
+    ],
+    "config_analysis_dir": [
+        "bowtie2-3357131_0.out.o3357132",
+        "bowtie2-3357131_10.out.o3357142",
+        "bowtie2-3357131_11.out.o3357143",
+        "bowtie2-3357131_12.out.o3357144",
+        "bowtie2-3357131_13.out.o3357145",
+        "bowtie2-3357131_14.out.o3357131",
+        "bowtie2-3357131_1.out.o3357133",
+        "bowtie2-3357131_2.out.o3357134",
+        "bowtie2-3357131_3.out.o3357135",
+        "bowtie2-3357131_4.out.o3357136",
+        "bowtie2-3357131_5.out.o3357137",
+        "bowtie2-3357131_6.out.o3357138",
+        "bowtie2-3357131_7.out.o3357139",
+        "bowtie2-3357131_8.out.o3357140",
+        "bowtie2-3357131_9.out.o3357141",
+        "multiqc_data",
+        "multiqc_report.html"
+    ],
+    "config_creation_date": "2024-06-24, 12:35 EDT",
+    "config_git_hash": null,
+    "config_intro_text": null,
+    "config_report_comment": null,
+    "config_report_header_info": null,
+    "config_script_path": "/ihome/crc/install/multiqc/1.19/python3.10/lib/python3.10/site-packages/multiqc/utils",
+    "config_short_version": "1.19",
+    "config_subtitle": null,
+    "config_title": null,
+    "config_version": "1.19"
+}
