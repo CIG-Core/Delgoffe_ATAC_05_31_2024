@@ -1,0 +1,757 @@
+---
+title: "Delgoffe_ATAC_05_31_2024"
+author: 
+- name: "Computational Immunogenomics Core (CIG Core)"
+  affiliation: "Center for Systems Immunology, University of Pittsburgh"
+  email: "sis186@pitt.edu"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true # table of content true
+    toc_depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true  ## if you want number sections at each table header
+    theme: "default" # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(ChIPseeker)
+library(clusterProfiler)
+library(AnnotationDbi)
+# library(TxDb.Hsapiens.UCSC.hg19.knownGene) #human
+# library(EnsDb.Hsapiens.v75) #human
+library(EnsDb.Mmusculus.v79)
+
+suppressPackageStartupMessages({
+  library(ATACseqQC)
+  library(ChIPpeakAnno)
+  library(BSgenome.Mmusculus.UCSC.mm10) # mouse
+  library(TxDb.Mmusculus.UCSC.mm10.knownGene) # mouse
+  #library(phastCons100way.UCSC.mm10) # mouse
+  library(GenomicScores) 
+  library(MotifDb)
+  library(GenomicAlignments)
+  library(ggplot2)
+  library(GenomicFeatures)
+  library(biomaRt)
+  library(org.Mm.eg.db)
+  library(ReactomePA)
+  library(ggupset)
+  library(ggimage)
+  library(xfun)
+  library(BiocManager)
+library(ChIPQC)
+library(DiffBind)
+library(lattice)
+
+# Ensure packages are up-to-date
+# BiocManager::install("ChIPQC")
+# BiocManager::install("DiffBind")
+# install.packages("lattice")
+})
+txdb <- TxDb.Mmusculus.UCSC.mm10.knownGene
+
+
+```
+
+```{r}
+proj_path <- "/ix/cigcore/proj/delgoffe"
+data_path <- file.path(proj_path, "data", "Delgoffe_ATAC_05_31_2024")
+resPath <- gsub(pattern="data", replacement="result", data_path)
+ATACseqQC_Path <- file.path(resPath, "ATACseqQC")
+dir.create(ATACseqQC_Path, showWarnings = TRUE, recursive = TRUE)
+after_filter_directory <- file.path(resPath, "post_align_filter")
+dir.create(after_filter_directory, showWarnings = TRUE, recursive = TRUE)
+peak_anno_Path <- file.path(resPath, "peak_annotation")
+dir.create(peak_anno_Path, showWarnings = TRUE, recursive = TRUE)
+MACS2_path <- file.path(resPath, "MACS2")
+dir.create(MACS2_path, showWarnings = TRUE, recursive = TRUE)
+visualPath <- file.path(peak_anno_Path, "Visual")
+dir.create(visualPath, showWarnings = TRUE, recursive = TRUE)
+QC_path <- file.path(resPath, "ATAC_QC")
+dir.create(QC_path, showWarnings = TRUE, recursive = TRUE)
+```
+
+# Metadata
+```{r}
+
+#metadata
+coldata <- data.frame(
+  names = c("0hr_Fasted1_S1", "0hr_Fasted2_S2", "0hr_Fasted3_S3", "0hr_Fed1_S4", "0hr_Fed2_S5", "0hr_Fed3_S6", "24hr_Fasted1_S7", "24hr_Fasted2_S8", "24hr_Fasted3_S9", "24hr_Fed1_S10", "24hr_Fed2_S11", "24hr_Fed3_S12", "24hr_Fed_SREBP1i-1_S13", "24hr_Fed_SREBP1i-2_S14", "24hr_Fed_SREBP1i-3_S15"),
+  condition = c("0hr", "0hr", "0hr", "0hr", "0hr", "0hr", "24hr", "24hr", "24hr", "24hr", "24hr", "24hr", "24hr", "24hr", "24hr"),
+  factor = c("Fasted", "Fasted", "Fasted", "Fed", "Fed", "Fed", "Fasted", "Fasted", "Fasted", "Fed", "Fed", "Fed", "Fed_SREBP1", "Fed_SREBP1", "Fed_SREBP1")
+)
+
+coldata$sample_id <- sub(".*_(S[0-9]+)$", "\\1", coldata$names)
+knitr::kable(coldata)
+```
+
+# Workflow
+
+> Pre-analysis
+
+ * Fastqc (multiqc) / trimming (optimal)
+ 
+ * Alignment: bowtie2
+ 
+ * Post Alignment adjustments/quality control
+ 
+ * Shift reads
+ 
+> Peak calling
+
+ * Shift reads
+ 
+ * Peak calling with MACS2
+
+> Advanced analysis
+
+ * Peak differential analysis
+
+ * Peak annotation
+
+ * Motif enrichment and activity analysis
+ 
+ * Footprinting analysis
+
+
+![](/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_1_25_23_Alok/pipeline/ATACseq_workflow.png)
+
+
+# ATAC-seq overview
+
+ATAC-seq (Assay for Transposase-Accessible Chromatin with high-throughput sequencing)
+
+*    Goal: Identification of open chromatin regions
+
+
+It utilizes a hyperactive Tn5 transposase to insert sequencing adapters into open chromatin regions.
+
+![](/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_1_25_23_Alok/pipeline/ATACseq_1.png)
+
+# Pre-analysis
+
+## Fastqc/Trimming
+
+The process of Fastqc and Trimmomatic is the same as bulk-RNA processing.
+
+## Alignment: bowtie2
+
+Reference genome: mouse: mm10; human: hg38
+
+The reads can be aligned using Bowtie2.  A brief look at the [manual](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) reveals the large number of parameters and options available with Bowtie2.  Here are a few that may benefit alignment of an ATAC-seq dataset:
+
+<table>
+  <tr>
+    <th align="center">Argument</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td align="center"><code>-X &lt;int&gt;</code></td>
+    <td>Maximum DNA fragment length (default 500bp).  If you anticipate that you may have DNA fragments longer than the default value, you should increase this parameter accordingly; otherwise, alignments from such fragments will be considered not properly paired.</td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><code>--very-sensitive</code></td>
+    <td>Bowtie2 has a number of alignment and effort parameters that interact in complex (and sometimes unexpected) ways.  Preset collections of these parameters are provided for convenience; the default is <code>--sensitive</code>, but better alignment results are frequently achieved with <code>--very-sensitive</code>.</td>
+  </tr>
+  <tr>
+    <td align="center"><code>-p &lt;int&gt;</code></td>
+    <td>Number of cores on which to run</td>
+  </tr>
+</table>
+
+The output is a [SAM file](https://samtools.github.io/hts-specs/SAMv1.pdf), which contains alignment information for each input read.  The SAM can be compressed to a binary format (BAM) and sorted with [SAMtools](http://www.htslib.org/doc/samtools.html).  This is best accomplished by piping the output from Bowtie2 directly to `samtools view` and `samtools sort`, e.g.:
+
+1. samtools view –u 
+Output uncompressed data. This also changes the default output SAM format to BAM.
+
+2. samtools sort -n  
+Sort by read names (i.e., the QNAME field) using an alpha-numeric ordering, rather than by chromosomal coordinates. 
+
+Notes: By default, Bowtie2 will randomly choose one of multiple equivalent mapping locations for a read.
+
+```
+module load bowtie2/2.4.5
+module load gcc/8.2.0 samtools/1.10
+bowtie2 --very-sensitive -X 500 --threads 8 \
+  -x /ix/cigcore/utils/mouse_indexed/bowtie2/mm10 \
+  -1 $DATAPATH/R1.fastq \
+  -2 $DATAPATH/R2.fastq \
+  | samtools view -u - \
+  | samtools sort -n -o $OUTPATH/bowtie2_sort_n.bam -
+```
+
+## Post Alignment filters
+
+### Remove Mitochondrial reads 
+
+ATAC-seq datasets usually contain a large percentage of reads that is derived from mitochondrial DNA.  Since there are no ATAC-seq peaks of interest in the mitochondrial genome, these reads will only complicate the subsequent steps. 
+
+### Remove PCR duplicates
+PCR duplicates are exact copies of DNA fragments that arise during PCR.  Since they are artifacts of the library preparation procedure, they may interfere with the biological signal of interest.  Therefore, they should be removed as part of the analysis pipeline.
+
+### Filter non-unique alignments
+
+It is not uncommon for short sequence reads to align equally well to multiple locations in a reference genome, especially given the repetitive nature of genomes.  Some researchers choose to remove non-uniquely aligned reads, using the `-q` parameter of `samtools view`.  For reads with multiple alignments, Bowtie2 (or BWA) will report only one alignment (by default) and will assign it a low mapping quality (MAPQ) score, which is defined as -10 * log<sub>10</sub>Pr{mapping position is wrong}. 
+For Bowtie2, people usually use MAPQ > 30.
+
+|  Phred Quality Score	|  Probability of incorrect base call	|  Base call accuracy
+| ------------- |:-------------:|:-------------:|
+| 10	| 1 in 10	| 90%
+| 20	| 1 in 100	| 99%
+| 30	| 1 in 1000	| 99.9%
+
+  * Note: Output needs to be index/sorted again before quality control
+  
+```
+module load gcc/8.2.0 samtools/1.9
+## set up file names
+align_bam=$DATAPATH/bowtie2_sort_n.bam
+remove_MT=$OUTPATH/noMT.bam
+remove_Dup=$OUTPATH/noDup_noMT.bam
+MAPQ30=$OUTPATH/mapq30_noDup_noMT.bam
+sort_index=$OUTPATH/mapq30_noDup_noMT_sort.bam
+
+# Remove the mitochondrial reads after alignment
+samtools view -@ 8 -h $align_bam | grep -v chrM | samtools sort -@ 8 -O bam -o $remove_MT
+
+# Remove PCR duplicates 
+samtools view -h -b -F 1024 $remove_MT -o $remove_Dup
+
+# Remove multi-mapped reads (i.e. those with MAPQ < 30, using -q in SAMtools)
+samtools view -h -b -q 30 $remove_Dup -o $MAPQ30
+
+# Output bam file needs to be sorted/index again
+samtools sort -@ 8 -O bam -o $sort_index $MAPQ30
+samtools index -@ 8 $sort_index
+
+# Remove intermediate files
+rm $remove_MT
+rm $remove_Dup
+rm $MAPQ30
+```
+
+## Post-alignment quality control
+Typically, a successful ATAC-seq experiment should generate a fragment size distribution plot with decreasing and periodical peaks corresponding to the nucleosome-free regions (NFR) (< 100 bp) and mono-, di-, and tri-nucleosomes (~ 200, 400, 600 bp, respectively). 
+
+```{r}
+# bamfile <- list.files(after_filter_directory, pattern = "_mapq30_noDup_noMT_sort.bam$", full.names = TRUE)
+# bamfile.labels <- gsub("_mapq30_noDup_noMT_sort.bam", "", basename(bamfile))
+```
+
+# Peak Calling
+
+## Shifting reads
+In the first ATAC-seq paper (Buenrostro et al., 2013) <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1929-3>, all reads aligning to the + strand were offset by +4 bp, and all reads aligning to the – strand were offset −5 bp, since Tn5 transposase has been shown to bind as a dimer and insert two adaptors separated by 9 bp (Adey et al., 2010) <https://genomebiology.biomedcentral.com/articles/10.1186/gb-2010-11-12-r119>.
+
+Ref: shifting reads bam for NucleoATAC? <https://github.com/GreenleafLab/NucleoATAC/issues/58>
+
+However, for peak calling, shifting of reads is not likely very important, as it is a pretty minor adjustment and peaks are 100s of basepairs. The shifting is only crucial when doing things where the exact position of the insertion matters at single base resolution, e.g. TF motif footprinting.
+
+
+```
+module purge
+module load bedtools/2.31.0
+bedtools bamtobed -i mapq30_noDup_noMT_sort.bam > mapq30_noDup_noMT_sort.bed
+
+cat mapq30_noDup_noMT_sort.bed | awk -F $'\t' 'BEGIN {OFS = FS}{ if ($6 == "+") {$2 = $2 + 4} else if ($6 == "-") {$3 = $3 - 5} print $0}' >| shifted.bed 
+```
+
+OR 
+
+```
+module purge
+module load deeptools/3.3.0
+alignmentSieve --ATACshift --bam $DATAPATH/mapq30_noDup_noMT_sort.bam --outFile $OUTPATH/shifted.bam
+```
+
+## Peak calling with MACS2
+
+About MACS2 <https://hbctraining.github.io/Intro-to-ChIPseq/lessons/05_peak_calling_macs.html>
+
+<table>
+  <tr>
+    <th align="center">Argument</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td align="center"><code>-t/--treatment &lt;input_files&gt;</code></td>
+    <td>Input files for treatment.</td>
+  </tr>
+  <tr>
+    <td align="center"><code>-n/--name &lt;experiment_name&gt;</code></td>
+    <td>Name of the experiment. Output files will be named using this prefix.</td>
+  </tr>
+  <tr>
+    <td align="center"><code>-f/--format &lt;file_format&gt;</code></td>
+    <td>Format of input files. Use 'BAM' for single-end or 'BAMPE' for paired-end, Use 'BED' for single-end or 'BEDPE' for paired-end.</td>
+  </tr>
+  <tr>
+    <td align="center"><code>-g/--gsize &lt;genome_size&gt;</code></td>
+    <td>Effective  genome size. It can be 1.0e+9 or 1000000000, or shortcuts:'hs' for human  (2.7e9), 'mm' for mouse (1.87e9), 'ce' for C. elegans (9e7) and 'dm'  for  fruitfly (1.2e8), Default:hs</td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><code>--nomodel</code></td>
+    <td>Whether  or not to build the shifting model. If True, MACS will not build model. by default it means shifting size = 100, try to set extsize to  change  it. DEFAULT: False.</td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><code>--keep-dup &lt;arg&gt;</code></td>
+    <td>Specify how to handle duplicate tags at the exact same location—same coordinates and strand. The 'auto' option instructs MACS to calculate the maximum number of tags at the exact same location based on a binomial distribution, using 1e-5 as the p-value cutoff. The 'all' option retains every tag. Alternatively, if an integer is provided, at most that number of tags will be kept at the same location. The default behavior is to keep only one tag at the same location. Default: 1.</td>
+  </tr>
+  <tr>
+    <td nowrap align="center"><code>--outdir &lt;output_path&gt;</code></td>
+    <td>Output directory path.</td>
+  </tr>
+</table>
+
+
+> Some suggestions suggested by the author ([source](https://github.com/macs3-project/MACS/issues/145)):
+> 
+> "`--keep-dup all` is recommended if the duplicated alignments have been removed in preprocessing steps with other tools. The idea is that we shall not perform the same task with two different tools in our pipeline. For example, if you rely on Picard to remove duplicates, then you just leave the task to Picard and let MACS not remove duplicates at all. In this way, you will have better control of your pipeline and avoid unexpected errors."
+> 
+> "so `-f BAMPE` is preferred for paired-end ATAC-seq? Yes. With `-f BAMPE` on, MACS2 read the left mate and the insertion length information from BAM file, and discard right mate. With `-f BAM`, MACS2 only keeps the left mate, so it's definitely not a feature you want for your paired-end data."
+>
+> "If you followed original protocol for ATAC-Seq, you should get Paired-End reads. If so, I would suggest you just use `--format BAMPE` to let MACS2 pileup the whole fragments in general. But if you want to focus on looking for where the 'cutting sites' are, then `--nomodel --shift -100 --extsize 200` should work"
+
+
+```
+macs2 callpeak \
+-t name_shifted_sort.bam \
+-n name \
+-f BAMPE \
+-g mm \
+--keep-dup all \
+--outdir outpath/name
+```
+
+# QC after peak calling
+
+```{r, include = FALSE}
+samples <- data.frame(
+  SampleID = c("ExVivo_Fasted_S3", "ExVivo_Fed_S4", "InVivo_Day11_Fasted_S1", "InVivo_Day11_Fed_S2"),
+  Tissue	= c("NA", "NA", "NA", "NA"),
+  Factor = c("Fasted", "Fed", "Fasted", "Fed"),
+  Condition = c("ExVivo", "ExVivo", "InVivo", "InVivo"),
+  Replicate = c("1", "1", "2", "2"),
+  bamReads = file.path(after_filter_directory, paste0(coldata$names, "_trimmomatic_mapq30_noDup_noMT_sort.bam")),
+  # bamControl = c("NA", "NA", "NA", "NA"),
+  # ControlID = c("NA", "NA", "NA", "NA"),
+  Peaks = file.path(MACS2_path, paste0(coldata$names, "_peaks.narrowPeak")),
+  PeakCaller = c("bed", "bed","bed", "bed")
+
+)
+
+all(file.exists(samples$bamReads))
+all(file.exists(samples$Peaks))
+
+# desired_order <- c("InVivo_Day11_Fasted_S1", "ExVivo_Fasted_S3", "InVivo_Day11_Fed_S2", "ExVivo_Fed_S4")
+# samples$SampleID <- factor(samples$SampleID, levels = desired_order)
+# samples <- samples[order(samples$SampleID), ]
+
+```
+
+```{r, include = FALSE}
+BiocParallel::register(BiocParallel::SerialParam())
+atacObj <- ChIPQC(samples, annotation="mm10", chromosomes = "chr19")
+#CPT1A chr19 chr19:3,321,326-3,386,735
+```
+
+Notes: QC is done on chr19 since CPT1A is on it.
+
+
+## Summary
+
+```{r}
+# Create a data frame with the specified categories and descriptions
+read_stats <- data.frame(
+  Category = c("Reads", "Map%", "Filt%", "Dup%", "ReadL", "FragL", "RelCC", "SSD", "RiP%"),
+  Description = c(
+    "Number of reads",
+    "Percentage of reads that are mapped (aligned)",
+    "Percentage of reads that are filtered out",
+    "Percentage of reads that align to exactly the same place as another read",
+    "Read length",
+    "This is the estimated mean fragment length that is calculated from the data by systematically shifting the reads on each strand towards each other until the highest degree of cross-coverage is obtained",
+    "Relative cross-coverage values for a range of shift sizes",
+    "SSD (squared sum of deviations) values of peak coverage density",
+    "Percentage of reads overlapping peaks"
+  )
+)
+
+# Display the table
+knitr::kable(read_stats, caption = "Read Statistics Descriptions")
+```
+
+```{r}
+atacObj
+```
+
+**Fed** replicates have more peaks than fasted replicated.
+
+### Peak Profile
+
+* replicate 1: Exvivo
+
+* replicate 2: Invivo
+
+**Fasted** replicates have stronger peaks than fed replicated under the same condition.
+
+```{r}
+plotPeakProfile(atacObj)
+```
+
+### RiP (Reads in Peaks)
+
+This metric represents the percentage of reads that overlap 'called peaks'. 
+
+It can be considered a "signal-to-noise" measure of what proportion of the library consists of fragments from open chromosome regions vs. background reads. This is again an indicator of good enrichments. **RiP around 5% or higher usually indicate successful enrichment.**
+
+We have better enrichment for the **fasted** replicates
+
+```{r}
+frip <- frip(atacObj)
+knitr::kable(frip, "html", caption = "RiP (Reads in Peaks)") %>%
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+Fasted replicates have higher percentage of reads inside the peaks compared to fed replicates.
+
+```{r}
+# par = c(6,7,20,11)
+# plotFrip(object = atacObj, type="barstacked",facet=T, facetBy=c("Condition"),AsPercent=TRUE)
+```
+
+
+### SSD (squared sum of deviations)
+
+SSD (squared sum of deviations) values of peak coverage density. A "good" or enriched sample typically has regions of significant read pile-up (larger differences in coverage) so **a higher SSD is more indicative of better enrichment.**
+
+We have better enrichment for the **fasted** replicates based on SSD.
+
+```{r}
+ssd <- ssd(atacObj)
+knitr::kable(ssd, "html", caption = "SSD") %>%
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/ATAC_QC/SSD.png){width = 80%}.
+
+### Relative cross-coverage (RelCC)
+
+**RelCC is a metric of peak signal strength**. It is calculated by comparing the maximal cross coverage peak (at the shift size corresponding to the fragment length) to the cross coverage at a shift size corresponding to the read length. 
+
+Usually peaks have a higher peak at fragment length, as shifting the reads on both strands should increase coverage at peak sites.
+
+This metric is generated using the following values:
+
+FragCC = Maximum cross coverage score
+
+The shifting distance ~ fragment length
+
+```{r}
+FragmentLengthCrossCoverage(atacObj)
+```
+
+ReadCC = cross coverage score at read Length
+
+the cross coverage values without shifting reads
+
+
+```{r}
+ReadLengthCrossCoverage(atacObj)
+```
+
+
+RelCC = FragCC/ReadCC
+
+RelCC values > 1 for all samples suggest good signal-to-noise
+
+```{r}
+RelativeCrossCoverage(atacObj)
+```
+
+```{r}
+plotCC(atacObj)
+```
+
+
+
+
+# Advanced analysis
+
+## Peak differential analysis
+
+## Peak annotation
+
+```{r, echo = FALSE}
+coldata$peaks_bed <- file.path(MACS2_path, paste0(coldata$names, "_summits.bed")) #narrow peak
+
+peak_files <- coldata$peaks_bed
+names(peak_files) <- coldata$names
+
+for (i in seq_along(peak_files)) {
+  peak <- readPeakFile(peak_files[i])
+  sample_name <- coldata$sample[i]
+  assign(paste0("peak_", sample_name), peak)
+}
+
+peakList <- lapply(as.list(peak_files), readPeakFile)
+```
+
+### ATACseq peaks coverage plot
+
+After peak calling, we would like to know the peak locations over the whole genome, covplot function calculates the coverage of peak regions over chromosomes and generate a figure to visualize.
+
+```{r}
+# for (i in seq_along(coldata$peaks_bed)) {
+#   sample_name <- coldata$sample[i]
+#   png(file = file.path(visualPath, paste0(coldata$names[i], "_PeakCoverage.png")))
+#   covplot(get(paste0("peak_", sample_name)), weightCol = "V5")
+#   dev.off()
+# }
+
+# png(file = file.path(visualPath, "PeakCoverage.png"))
+# covplot(peakList, weightCol = "V5")
+```
+
+### Profile of ATAC-seq peaks binding to TSS regions
+
+
+```{r}
+# prepare the promoter regions
+# upstream/downstream from TSS site
+# A TxDb object stores the genomic positions of the 5’ and 3’ untranslated regions (UTRs), protein coding sequences (CDSs), and exons
+# promoter <- getPromoters(TxDb=txdb, upstream=1000, downstream=1000)
+# 
+# # calculate the tag matrix
+# tagMatrixList <- lapply(as.list(peak_files), getTagMatrix, windows=promoter)
+
+```
+
+#### Peaks plot (check maximum TSS region cutoff value)
+
+Peak plot average or sum signal over sets of regions to identify signal trends. By comparing to the plot of promoter region = (-1000bp, +1000bp), I choose promoter regions up/down 500 bp at TSS, which is later on used for peak annotation. With these plots the confidence interval is estimated by bootstrap method (500 iterations) and is shown in the grey shading that follows each curve.
+
+
+```{r}
+# png(file = file.path(visualPath, "peaks_TSS_1000.png"))
+# plotAvgProf(tagMatrixList, xlim=c(-1000, 1000), conf=0.95, resample=500, facet="row")
+```
+
+```{r, echo = FALSE}
+# Try TSS = 500
+coldata$peaks_bed <- file.path(MACS2_path, paste0(coldata$names, "_summits.bed")) #narrow peak
+
+peak_files <- coldata$peaks_bed
+names(peak_files) <- coldata$names
+promoter <- getPromoters(TxDb=txdb, upstream=500, downstream=500)
+peakList <- lapply(as.list(peak_files), readPeakFile)
+# calculate the tag matrix
+tagMatrixList <- lapply(as.list(peak_files), getTagMatrix, windows=promoter)
+# png(file = file.path(visualPath, "peaks_TSS_500.png"))
+# plotAvgProf(tagMatrixList, xlim=c(-500, 500), conf=0.95, resample=500, facet="row")
+```
+```{r}
+#### Peaks that align to flank sequences of TSS
+# png(file = file.path(visualPath, "peaks_align_TSS_500.png"))
+# plotAvgProf2(peakList, upstream = 500, downstream = 500, xlab = "Genomic Region (5'->3')", ylab = "Peak Count Frequency", conf=0.95, facet = "row")
+```
+
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/Visual/peaks_TSS_500.png){width = 60%}.
+
+
+#### Heatmap: read count frequency relative to the TSS. 
+here the amplitude of the peak is based on the number of peaks and not on the number of reads aligning (since BAM files are not involved).
+
+```{r}
+# for (i in seq_along(peak_files)) {
+#   tagMatrix <- getTagMatrix(peak_files[i], windows=promoter)
+#   sample_name <- coldata$sample[i]
+#   assign(paste0("tagMatrix_", sample_name), tagMatrix)
+# }
+
+# for (i in seq_along(coldata$peaks_bed)) {
+# name <- coldata$names[i]
+# sample <- coldata$sample[i]
+# png(file = file.path(visualPath, paste0(name, "_heatmap_peak.png")))
+# tagHeatmap(get(paste0("tagMatrix_", sample)))
+# dev.off()
+# }
+
+# png(file = file.path(visualPath, "InVivo_Day11_Fed_S2_heatmap_peak.png"))
+# tagHeatmap(tagMatrix_S2)
+
+# png(file = file.path(visualPath, "heatmap.png"))
+# tagHeatmap(tagMatrixList)
+```
+
+```{r}
+# for (i in seq_along(peak_files)) {
+#   peak <- readPeakFile(peak_files[i])
+#   sample_name <- coldata$sample[i]
+#   assign(paste0("peak_", sample_name), peak)
+# }
+# 
+# for (i in seq_along(coldata$peaks_bed)) {
+# sample_name <- coldata$sample[i]
+# png(file = file.path(visualPath, paste0(sample_name, "_heatmap_peak.png")))
+# peak_Profile_Heatmap(peak = get(paste0("peak_", sample_name)),
+#                      upstream = 500,
+#                      downstream = 500,
+#                      by = "gene",
+#                      type = "start_site",
+#                      TxDb = txdb,
+#                      nbin = 800)
+# dev.off()
+# }
+```
+
+#### Annotation
+
+ChIPseeker implements the annotatePeak function for annotating peaks with nearest gene and genomic region where the peak is located. The annotatePeak function by default uses the TSS method, and provides parameters to specify a max distance cutoff. Here I use tssRegion=c(-500, 500).
+
+
+```{r}
+# peakAnnoList <- lapply(as.list(peak_files), annotatePeak, TxDb=txdb,
+#                         tssRegion=c(-500, 500), annoDb="org.Mm.eg.db", verbose=FALSE)
+# png(file = file.path(visualPath, "Barchart_anno.png"))
+# plotAnnoBar(peakAnnoList)
+# 
+# png(file = file.path(visualPath, "TSSdist_anno.png"))
+# plotDistToTSS(peakAnnoList, title="Distribution of transcription factor-binding loci \n relative to TSS")
+```
+
+
+```{r}
+# for (i in seq_along(peak_files)) {
+#   peak <- readPeakFile(peak_files[i])
+#   sample_name <- coldata$sample[i]
+#   assign(paste0("peak_", sample_name), peak)
+# }
+# 
+# for (i in seq_along(coldata$peaks_bed)) {
+#   sample_name <- coldata$sample[i]
+#   name <- coldata$names[i]
+#   peak <- get(paste0("peak_", sample_name))
+#   bed.annot <- annotatePeak(peak, tssRegion=c(-500, 500), TxDb=txdb, annoDb="org.Mm.eg.db")
+#   annot_peaks <- as.data.frame(bed.annot)
+#   write.table(annot_peaks,
+#               file = file.path(peak_anno_Path, paste0(name, "_peak_annotated.txt")),
+#               append = FALSE,
+#               quote = FALSE,
+#               sep = "\t",
+#               row.names = FALSE,
+#               col.names = TRUE,
+#               fileEncoding = "")
+#   p1 <- upsetplot(bed.annot, vennpie=TRUE)
+#   ggsave(file.path(visualPath, paste0(name, "_Visual_peaks_annotations.png")), p1)
+# }
+
+```
+
+
+```{r}
+# for (i in seq_along(coldata$peaks_bed)) {
+#   sample_name <- coldata$sample[i]
+#   name <- coldata$names[i]
+#   annot <- data.frame(peakAnnoList[[i]]@anno)
+# 
+#   # Get the entrez IDs
+#   entrez <- annot$geneId
+# 
+#   # Return the gene symbol for the set of Entrez IDs
+#   annotations_edb <- AnnotationDbi::select(EnsDb.Mmusculus.v79,
+#                                             keys = entrez,
+#                                             columns = c("GENENAME"),
+#                                             keytype = "ENTREZID")
+# 
+#   # Change IDs to character type to merge
+#   annotations_edb$ENTREZID <- as.character(annotations_edb$ENTREZID)
+# 
+#   # Write to file
+#   merged_annot <- merge(annot, annotations_edb, by.x = "geneId", by.y = "ENTREZID", all.x = TRUE)
+#   write.table(merged_annot, file = file.path(peak_anno_Path, paste0(name, "_peak_anno_ID.txt")), sep = "\t", quote = FALSE, row.names = FALSE)
+# }
+
+```
+
+>  ExVivo_Fasted_S3
+
+```{r}
+xfun::embed_files(c('/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/ExVivo_Fasted_S3_peak_anno_ID.txt'))
+```
+
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/Visual/ExVivo_Fasted_S3_Visual_peaks_annotations.png){width = 60%}.
+
+>  ExVivo_Fed_S4
+
+```{r}
+xfun::embed_files(c('/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/ExVivo_Fed_S4_peak_anno_ID.txt'))
+```
+
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/Visual/ExVivo_Fed_S4_Visual_peaks_annotations.png){width = 60%}.
+
+>  InVivo_Day11_Fasted_S1
+
+```{r}
+xfun::embed_files(c('/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/InVivo_Day11_Fasted_S1_peak_anno_ID.txt'))
+```
+
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/Visual/InVivo_Day11_Fasted_S1_Visual_peaks_annotations.png){width = 60%}.
+
+
+>  InVivo_Day11_Fed_S2
+
+```{r}
+xfun::embed_files(c('/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/InVivo_Day11_Fed_S2_peak_anno_ID.txt'))
+```
+
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/Visual/InVivo_Day11_Fed_S2_Visual_peaks_annotations.png){width = 60%}.
+
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/Visual/Barchart_anno.png){width = 60%}.
+![](/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_1_25_23_Alok/peak_annotation/Visual/TSSdist_anno.png){width = 60%}.
+
+
+
+## Motif enrichment and activity analysis
+
+MEME-chip <https://web.mit.edu/meme_v4.11.4/share/doc/meme-chip.html>
+
+```
+# sort by q-value
+sort -k9nr sample.narrowPeak >sample.sorted.narrowPeak
+# select the top 1000 peaks
+head -1000 sample.sorted.narrowPeak >sample.top1000.narrowPeaks
+# create a bed file of 500bp regions centered on the peak summits
+awk 'BEGIN{ OFS="\t";}{ midPos=$2+$10; print $1, midPos-250, midPos+250; }' sample.top1000.narrowPeaks >sample.regions.bed
+# create fasta file
+fastaFromBed -fi mm10_masked.fa -bed sample.regions.bed -fo sample.sequences.fa
+```
+
+summit.bed to fasta first, then run
+
+```
+meme-chip -oc $OUTPATH/${names[${SLURM_ARRAY_TASK_ID}]} -dna $DATAPATH/${names[${SLURM_ARRAY_TASK_ID}]}_summits.fasta 
+```
+
+build background
+```
+fasta-get-markov -m 2 -dna -nostatus -nosummary sample.sequences.fa background.model
+```
+
+
+```
+meme-chip
+-oc OUTPATH /
+-dna /
+-bfile background.model / # or '-order N' if no background model
+sample.sequences.fa
+```
+
+## Footprinting analysis
