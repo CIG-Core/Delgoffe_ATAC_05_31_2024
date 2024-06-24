@@ -1,0 +1,17 @@
+24hr_Fed_SREBP1i-1_S13
+33718481 reads; of these:
+  33718481 (100.00%) were paired; of these:
+    4216926 (12.51%) aligned concordantly 0 times
+    23428877 (69.48%) aligned concordantly exactly 1 time
+    6072678 (18.01%) aligned concordantly >1 times
+    ----
+    4216926 pairs aligned concordantly 0 times; of these:
+      2700203 (64.03%) aligned discordantly 1 time
+    ----
+    1516723 pairs aligned 0 times concordantly or discordantly; of these:
+      3033446 mates make up the pairs; of these:
+        1069531 (35.26%) aligned 0 times
+        644742 (21.25%) aligned exactly 1 time
+        1319173 (43.49%) aligned >1 times
+98.41% overall alignment rate
+[bam_sort_core] merging from 22 files and 1 in-memory blocks...

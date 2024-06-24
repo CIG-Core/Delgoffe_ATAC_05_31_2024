@@ -1,0 +1,17 @@
+24hr_Fasted3_S9
+42403297 reads; of these:
+  42403297 (100.00%) were paired; of these:
+    5657770 (13.34%) aligned concordantly 0 times
+    29130378 (68.70%) aligned concordantly exactly 1 time
+    7615149 (17.96%) aligned concordantly >1 times
+    ----
+    5657770 pairs aligned concordantly 0 times; of these:
+      3603462 (63.69%) aligned discordantly 1 time
+    ----
+    2054308 pairs aligned 0 times concordantly or discordantly; of these:
+      4108616 mates make up the pairs; of these:
+        1546207 (37.63%) aligned 0 times
+        926666 (22.55%) aligned exactly 1 time
+        1635743 (39.81%) aligned >1 times
+98.18% overall alignment rate
+[bam_sort_core] merging from 27 files and 1 in-memory blocks...

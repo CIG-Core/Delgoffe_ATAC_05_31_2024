@@ -1,0 +1,8 @@
+cat: /ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/bowtie2_2/mouse_bowtie2_listFastq.txt: No such file or directory
+
+stat: Bad file descriptor
+Warning: Could not open read file "/ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/_R1_001.fastq.gz" for reading; skipping...
+Error: No input read files were valid
+(ERR): bowtie2-align exited with value 1
+[main_samview] fail to read the header from "-".
+samtools sort: failed to read header from "-"

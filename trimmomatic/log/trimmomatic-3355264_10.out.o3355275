@@ -1,0 +1,33 @@
++ FASTQPATH=/ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024
++ CLEANPATH=/ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/cleaned
++ INTERIMPATH=/ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/intermediate
++ SCRIPTPATH=/ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/trimmomatic
++ FASTQNAMES=($(cat $SCRIPTPATH/mouse_trim_listFastq.txt))
+++ cat /ix/cigcore/proj/delgoffe/code/Sissi/Delgoffe_ATAC_05_31_2024/trimmomatic/mouse_trim_listFastq.txt
++ echo 'Doing fastqc analysis on:'
+Doing fastqc analysis on:
++ echo 24hr_Fed2_S11
+24hr_Fed2_S11
++ mkdir -p /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/cleaned
++ mkdir -p /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/intermediate
++ echo 'Trimming started at:'
+Trimming started at:
+++ date
++ echo Fri Jun 21 14:03:16 EDT 2024
+Fri Jun 21 14:03:16 EDT 2024
++ java -jar /ihome/crc/install/trimmomatic/Trimmomatic-0.38/trimmomatic-0.38.jar PE -threads 63 -phred33 /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/24hr_Fed2_S11_R1_001.fastq.gz /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/24hr_Fed2_S11_R2_001.fastq.gz /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/cleaned/24hr_Fed2_S11_trimmomatic_R1.fastq /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/intermediate/24hr_Fed2_S11_trimmomatic_unpaired_R1.fastq /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/cleaned/24hr_Fed2_S11_trimmomatic_R2.fastq /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/intermediate/24hr_Fed2_S11_trimmomatic_unpaired_R2.fastq ILLUMINACLIP:/ihome/crc/install/trimmomatic/Trimmomatic-0.38/adapters/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:5:20 MINLEN:50
+TrimmomaticPE: Started with arguments:
+ -threads 63 -phred33 /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/24hr_Fed2_S11_R1_001.fastq.gz /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/24hr_Fed2_S11_R2_001.fastq.gz /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/cleaned/24hr_Fed2_S11_trimmomatic_R1.fastq /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/intermediate/24hr_Fed2_S11_trimmomatic_unpaired_R1.fastq /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/cleaned/24hr_Fed2_S11_trimmomatic_R2.fastq /ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/intermediate/24hr_Fed2_S11_trimmomatic_unpaired_R2.fastq ILLUMINACLIP:/ihome/crc/install/trimmomatic/Trimmomatic-0.38/adapters/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:5:20 MINLEN:50
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 31183927 Both Surviving: 29308331 (93.99%) Forward Only Surviving: 1081621 (3.47%) Reverse Only Surviving: 389172 (1.25%) Dropped: 404803 (1.30%)
+TrimmomaticPE: Completed successfully
++ echo 'Finished at:'
+Finished at:
+++ date
++ echo Fri Jun 21 14:11:15 EDT 2024
+Fri Jun 21 14:11:15 EDT 2024

@@ -1,0 +1,17 @@
+0hr_Fasted2_S2
+36007899 reads; of these:
+  36007899 (100.00%) were paired; of these:
+    5953316 (16.53%) aligned concordantly 0 times
+    24358512 (67.65%) aligned concordantly exactly 1 time
+    5696071 (15.82%) aligned concordantly >1 times
+    ----
+    5953316 pairs aligned concordantly 0 times; of these:
+      3464695 (58.20%) aligned discordantly 1 time
+    ----
+    2488621 pairs aligned 0 times concordantly or discordantly; of these:
+      4977242 mates make up the pairs; of these:
+        2407461 (48.37%) aligned 0 times
+        890614 (17.89%) aligned exactly 1 time
+        1679167 (33.74%) aligned >1 times
+96.66% overall alignment rate
+[bam_sort_core] merging from 23 files and 1 in-memory blocks...

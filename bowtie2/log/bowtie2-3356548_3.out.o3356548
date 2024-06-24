@@ -1,0 +1,17 @@
+0hr_Fed1_S4
+20399056 reads; of these:
+  20399056 (100.00%) were paired; of these:
+    4786892 (23.47%) aligned concordantly 0 times
+    12317269 (60.38%) aligned concordantly exactly 1 time
+    3294895 (16.15%) aligned concordantly >1 times
+    ----
+    4786892 pairs aligned concordantly 0 times; of these:
+      3030900 (63.32%) aligned discordantly 1 time
+    ----
+    1755992 pairs aligned 0 times concordantly or discordantly; of these:
+      3511984 mates make up the pairs; of these:
+        1012779 (28.84%) aligned 0 times
+        782997 (22.30%) aligned exactly 1 time
+        1716208 (48.87%) aligned >1 times
+97.52% overall alignment rate
+[bam_sort_core] merging from 13 files and 1 in-memory blocks...

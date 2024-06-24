@@ -1,0 +1,17 @@
+24hr_Fasted2_S8
+36741700 reads; of these:
+  36741700 (100.00%) were paired; of these:
+    5120258 (13.94%) aligned concordantly 0 times
+    24678464 (67.17%) aligned concordantly exactly 1 time
+    6942978 (18.90%) aligned concordantly >1 times
+    ----
+    5120258 pairs aligned concordantly 0 times; of these:
+      2992933 (58.45%) aligned discordantly 1 time
+    ----
+    2127325 pairs aligned 0 times concordantly or discordantly; of these:
+      4254650 mates make up the pairs; of these:
+        2032339 (47.77%) aligned 0 times
+        770651 (18.11%) aligned exactly 1 time
+        1451660 (34.12%) aligned >1 times
+97.23% overall alignment rate
+[bam_sort_core] merging from 23 files and 1 in-memory blocks...

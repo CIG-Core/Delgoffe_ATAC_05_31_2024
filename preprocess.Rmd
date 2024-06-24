@@ -1,0 +1,167 @@
+---
+title: "Preprocessing on RNA-seq Analysis"
+author:
+- name: Computational Immunogenomics Core (CIG Core)
+  affiliation: Center for Systems Immunology, University of Pittsburgh
+  email: sis186@pitt.edu
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true # table of content true
+    toc_depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true  ## if you want number sections at each table header
+    theme: "default" # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+# Define path to directories
+```{r path_setup}
+proj_directory <- "/ix/cigcore/proj/delgoffe" # project path
+user <- "Sissi" # Replace to your name
+dataname <- "Delgoffe_ATAC_05_31_2024" # data name
+dataSource <- "mouse" # Source of data, enter "human" or "mouse"
+email <- "sis186" # PITT email address
+```
+
+```{r default_path}
+# "data" "code" "result" directories
+raw_data_directory <- file.path(proj_directory, "data", dataname)
+code_directory <- file.path(proj_directory, "code", user, dataname) 
+result_directory <- file.path(proj_directory, "result", dataname)
+kallisto_output_directory <- file.path(result_directory, "mapped")
+
+# "qc/raw" disrectory
+qc_directory <- file.path(raw_data_directory, "qc")
+qc_raw_directory <- file.path(qc_directory, "raw_fastqc")
+
+#"fastqc", "kallisto", "sleuth" directories and "log"
+fastqc_directory <- file.path(code_directory, "fastqc")
+kallisto_directory <- file.path(code_directory, "kallisto")
+sleuth_directory <- file.path(code_directory, "sleuth")
+log_fastqc_directory <- file.path(fastqc_directory, "log")
+log_kallisto_directory <- file.path(kallisto_directory, "log")
+
+# Create directories
+dirs <- c(result_directory, code_directory, kallisto_output_directory, fastqc_directory, kallisto_directory, sleuth_directory, log_fastqc_directory, log_kallisto_directory)
+lapply(dirs, function(dir) dir.create(dir, showWarnings = FALSE, recursive = TRUE))
+
+# Function
+source("/ix/cigcore/utils/code/bulk_rna_preprocess/fastQC.R") #fastqc
+source("/ix/cigcore/utils/code/bulk_rna_preprocess/trimming.R") #trimming
+source("/ix/cigcore/utils/code/bulk_rna_preprocess/kallisto.R") #kallisto
+source("/ix/cigcore/utils/code/bulk_rna_preprocess/multiqc.R") #multiqc
+```
+
+# 1st QC and multiqc - Fastqc (raw)
+
+> Note 
+
+The list of FASTQ files and the SBATCH script can be found in the `fastqc_directory`.
+
+The log files can be found in the `log_fastqc_directory`
+
+The output can be found in the `qc_directory`
+
+```{r 1stfastqc}
+fastQC(email, raw_data_directory, dataSource, RawOrTrim = "raw_fastqc", fastqc_directory, log_fastqc_directory, qc_directory, doSubmit = TRUE, maxJobNum = 48)
+```
+
+## multiqc for 1st QC
+
+> Note 
+
+Please wait until you receive an email or check `log_fastqc_directory` to confirm that the **1stQC** is completed before running the following chunk of code.
+
+The multiqc report can be found in the `qc_raw_directory`
+
+```{r 1stmultiqc}
+multiqc_raw <- multiqc(email, qc_raw_directory, doSubmit = TRUE, maxJobNum = 48)
+```
+
+# Trim data if needed
+
+## Create directories if trimming is needed!
+```{r trim_pathway}
+# Create directories if trimming is needed!
+trim_data_directory <- file.path(raw_data_directory, "cleaned")
+trim_directory <- file.path(code_directory, "trimmomatic")
+trim_fastqc_directory <- file.path(code_directory, "trim_fastqc")
+log_trim_directory <- file.path(trim_directory, "log")
+log_trim_fastqc_directory <- file.path(trim_fastqc_directory, "log")
+qc_trim_directory <- file.path(qc_directory, "trim_fastqc")
+# Create directories
+dirs <- c(trim_directory, trim_fastqc_directory, log_trim_directory, log_trim_fastqc_directory)
+lapply(dirs, function(dir) dir.create(dir, showWarnings = FALSE, recursive = TRUE))
+```
+
+## Trimming
+
+> Note 
+
+The list of FASTQ files and the SBATCH script can be found in the `trim_directory`.
+
+The log files can be found in the `log_trim_directory`
+
+The output can be found in the `trim_data_directory`
+
+```{r trim}
+trimming(email, raw_data_directory, dataSource, trim_directory, log_trim_directory, doSubmit = TRUE, maxJobNum = 48)
+```
+
+# 2nd QC and multiqc - Fastqc (trimmed)
+
+The list of FASTQ files and the SBATCH script can be found in the `trim_fastqc_directory`.
+
+The log files can be found in the `log_trim_fastqc_directory`
+
+The output can be found in the `qc_trim_directory`
+
+> Note 
+
+Please wait until you receive an email or check `log_trim_directory` to confirm that **trimming** is completed before running the following chunk of code.
+
+```{r 2ndfastqc_trim}
+fastQC(email, trim_data_directory, dataSource, RawOrTrim = "trim_fastqc", trim_fastqc_directory, log_trim_fastqc_directory, qc_directory, doSubmit = TRUE, maxJobNum = 48)
+```
+
+## Multiqc for 2nd QC
+
+> Note 
+
+Please wait until you receive an email confirming that the **2stQC** is completed before running the following chunk of code.
+
+The multiqc report can be found in the `qc_trim_directory`
+
+```{r 2ndfastqc_trim_multiqc}
+multiqc_trim <- multiqc(email,qc_trim_directory,doSubmit = TRUE, maxJobNum = 48)
+```
+
+
+# Alignment: kallisto
+
+## Use raw data to align
+
+```{r raw_listfastq}
+kallisto(email, raw_data_directory, dataSource, RawOrTrim = "raw_kallisto", kallisto_directory, log_kallisto_directory, kallisto_output_directory, doSubmit = TRUE, maxJobNum = 48)
+```
+
+## Use trimmed data to align
+
+```{r trim_listfastq}
+kallisto(email, trim_data_directory, dataSource, RawOrTrim = "trim_kallisto", kallisto_directory, log_kallisto_directory, kallisto_output_directory, doSubmit = TRUE, maxJobNum = 48)
+```
+
+## Multiqc for Kallisto
+
+The multiqc report can be found in the `log_kallisto_directory`
+
+```{r multiqc_kallisto}
+multiqc_kallisto <- multiqc(email,log_kallisto_directory,doSubmit = TRUE, maxJobNum = 48)
+```

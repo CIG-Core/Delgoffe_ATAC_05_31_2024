@@ -1,0 +1,7 @@
+0hr_Fasted1_S1
+stat: Bad file descriptor
+Warning: Could not open read file "/ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/0hr_Fasted1_S1_R1.fastq" for reading; skipping...
+Error: No input read files were valid
+(ERR): bowtie2-align exited with value 1
+[main_samview] fail to read the header from "-".
+samtools sort: failed to read header from "-"

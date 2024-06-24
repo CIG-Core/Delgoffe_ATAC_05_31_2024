@@ -1,0 +1,8 @@
+Started at:
+Fri Jun 21 11:32:51 EDT 2024
+Doing fastqc analysis on:
+24hr_Fed2_S11_R2_001.fastq.gz
+mkdir: cannot create directory ‘/ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/qc’: Permission denied
+Specified output directory '/ix/cigcore/proj/delgoffe/data/Delgoffe_ATAC_05_31_2024/qc/raw_fastqc' does not exist
+Finished at:
+Fri Jun 21 11:32:53 EDT 2024
