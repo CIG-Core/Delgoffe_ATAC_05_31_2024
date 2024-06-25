@@ -70,11 +70,11 @@ after_filter_directory <- file.path(resPath, "post_align_filter")
 dir.create(after_filter_directory, showWarnings = TRUE, recursive = TRUE)
 peak_anno_Path <- file.path(resPath, "peak_annotation")
 dir.create(peak_anno_Path, showWarnings = TRUE, recursive = TRUE)
-MACS2_path <- file.path(resPath, "MACS2")
+MACS2_path <- file.path(resPath, "peak_calling_MACS2")
 dir.create(MACS2_path, showWarnings = TRUE, recursive = TRUE)
 visualPath <- file.path(peak_anno_Path, "Visual")
 dir.create(visualPath, showWarnings = TRUE, recursive = TRUE)
-QC_path <- file.path(resPath, "ATAC_QC")
+QC_path <- file.path(resPath, "after_peakCalling_QC")
 dir.create(QC_path, showWarnings = TRUE, recursive = TRUE)
 ```
 

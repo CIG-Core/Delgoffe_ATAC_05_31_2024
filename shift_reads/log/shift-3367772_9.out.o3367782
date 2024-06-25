@@ -1,0 +1,18 @@
+24hr_Fed1_S10
+/var/spool/slurmd/job3367782/slurm_script: line 24: /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/shift_reads/24hr_Fed1_S10_shifted.bam: No such file or directory
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2311:46123:34755 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2610:16622:47894 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1401:46180:12700 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2307:36050:37709 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2111:46767:32711 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2211:68051:41760 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1410:30501:19667 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1410:35557:17490 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2307:36050:37709 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2311:46123:34755 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2610:16622:47894 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2111:46767:32711 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1401:46180:12700 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1410:30501:19667 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1410:35557:17490 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2211:68051:41760 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 

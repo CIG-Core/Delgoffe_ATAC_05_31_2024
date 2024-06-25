@@ -1,0 +1,5 @@
+24hr_Fed_SREBP1i-1_S13
+/var/spool/slurmd/job3367785/slurm_script: line 24: /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/shift_reads/24hr_Fed_SREBP1i-1_S13_shifted.bam: No such file or directory
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2403:71610:19118 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1207:61063:13609 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2403:71610:19118 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 

@@ -1,0 +1,51 @@
+24hr_Fed3_S12
+INFO  @ Tue, 25 Jun 2024 09:27:49: 
+# Command line: callpeak --treatment /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/ATACshift/24hr_Fed3_S12_shifted.bam --name 24hr_Fed3_S12 --format BAMPE -g mm --keep-dup all --outdir /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed3_S12
+# ARGUMENTS LIST:
+# name = 24hr_Fed3_S12
+# format = BAMPE
+# ChIP-seq file = ['/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/ATACshift/24hr_Fed3_S12_shifted.bam']
+# control file = None
+# effective genome size = 1.87e+09
+# band width = 300
+# model fold = [5, 50]
+# qvalue cutoff = 5.00e-02
+# Larger dataset will be scaled towards smaller dataset.
+# Range for calculating regional lambda is: 10000 bps
+# Broad region calling is off
+# Paired-End mode is on
+ 
+INFO  @ Tue, 25 Jun 2024 09:27:49: #1 read fragment files... 
+INFO  @ Tue, 25 Jun 2024 09:27:49: #1 read treatment fragments... 
+INFO  @ Tue, 25 Jun 2024 09:27:54:  1000000 
+INFO  @ Tue, 25 Jun 2024 09:27:59:  2000000 
+INFO  @ Tue, 25 Jun 2024 09:28:04:  3000000 
+INFO  @ Tue, 25 Jun 2024 09:28:09:  4000000 
+INFO  @ Tue, 25 Jun 2024 09:28:14:  5000000 
+INFO  @ Tue, 25 Jun 2024 09:28:18:  6000000 
+INFO  @ Tue, 25 Jun 2024 09:28:23:  7000000 
+INFO  @ Tue, 25 Jun 2024 09:28:28:  8000000 
+INFO  @ Tue, 25 Jun 2024 09:28:33:  9000000 
+INFO  @ Tue, 25 Jun 2024 09:28:38:  10000000 
+INFO  @ Tue, 25 Jun 2024 09:28:43:  11000000 
+INFO  @ Tue, 25 Jun 2024 09:28:48:  12000000 
+INFO  @ Tue, 25 Jun 2024 09:28:53:  13000000 
+INFO  @ Tue, 25 Jun 2024 09:28:58:  14000000 
+INFO  @ Tue, 25 Jun 2024 09:29:03:  15000000 
+INFO  @ Tue, 25 Jun 2024 09:29:08:  16000000 
+INFO  @ Tue, 25 Jun 2024 09:29:13:  17000000 
+INFO  @ Tue, 25 Jun 2024 09:29:18:  18000000 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #1 mean fragment size is determined as 316 bp from treatment 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #1 fragment size = 316 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #1  total fragments in treatment: 18995574 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #1 finished! 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #2 Build Peak Model... 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #2 Skipped... 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #2 Use 316 as fragment length 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #3 Call peaks... 
+INFO  @ Tue, 25 Jun 2024 09:29:32: #3 Pre-compute pvalue-qvalue table... 
+INFO  @ Tue, 25 Jun 2024 09:30:31: #3 Call peaks for each chromosome... 
+INFO  @ Tue, 25 Jun 2024 09:30:56: #4 Write output xls file... /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed3_S12/24hr_Fed3_S12_peaks.xls 
+INFO  @ Tue, 25 Jun 2024 09:30:56: #4 Write peak in narrowPeak format file... /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed3_S12/24hr_Fed3_S12_peaks.narrowPeak 
+INFO  @ Tue, 25 Jun 2024 09:30:56: #4 Write summits bed file... /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed3_S12/24hr_Fed3_S12_summits.bed 
+INFO  @ Tue, 25 Jun 2024 09:30:57: Done! 

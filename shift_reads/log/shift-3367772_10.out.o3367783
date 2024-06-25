@@ -1,0 +1,9 @@
+24hr_Fed2_S11
+/var/spool/slurmd/job3367783/slurm_script: line 24: /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/shift_reads/24hr_Fed2_S11_shifted.bam: No such file or directory
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1511:24442:33676 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2104:41314:31083 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2404:61897:47951 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1511:24442:33676 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2104:41314:31083 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:2404:61897:47951 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1509:44116:40018 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 

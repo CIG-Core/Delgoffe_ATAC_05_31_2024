@@ -1,0 +1,54 @@
+24hr_Fed_SREBP1i-2_S14
+INFO  @ Tue, 25 Jun 2024 09:27:48: 
+# Command line: callpeak --treatment /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/ATACshift/24hr_Fed_SREBP1i-2_S14_shifted.bam --name 24hr_Fed_SREBP1i-2_S14 --format BAMPE -g mm --keep-dup all --outdir /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed_SREBP1i-2_S14
+# ARGUMENTS LIST:
+# name = 24hr_Fed_SREBP1i-2_S14
+# format = BAMPE
+# ChIP-seq file = ['/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/ATACshift/24hr_Fed_SREBP1i-2_S14_shifted.bam']
+# control file = None
+# effective genome size = 1.87e+09
+# band width = 300
+# model fold = [5, 50]
+# qvalue cutoff = 5.00e-02
+# Larger dataset will be scaled towards smaller dataset.
+# Range for calculating regional lambda is: 10000 bps
+# Broad region calling is off
+# Paired-End mode is on
+ 
+INFO  @ Tue, 25 Jun 2024 09:27:48: #1 read fragment files... 
+INFO  @ Tue, 25 Jun 2024 09:27:48: #1 read treatment fragments... 
+INFO  @ Tue, 25 Jun 2024 09:27:50:  1000000 
+INFO  @ Tue, 25 Jun 2024 09:27:52:  2000000 
+INFO  @ Tue, 25 Jun 2024 09:27:55:  3000000 
+INFO  @ Tue, 25 Jun 2024 09:27:57:  4000000 
+INFO  @ Tue, 25 Jun 2024 09:27:59:  5000000 
+INFO  @ Tue, 25 Jun 2024 09:28:02:  6000000 
+INFO  @ Tue, 25 Jun 2024 09:28:04:  7000000 
+INFO  @ Tue, 25 Jun 2024 09:28:07:  8000000 
+INFO  @ Tue, 25 Jun 2024 09:28:09:  9000000 
+INFO  @ Tue, 25 Jun 2024 09:28:12:  10000000 
+INFO  @ Tue, 25 Jun 2024 09:28:14:  11000000 
+INFO  @ Tue, 25 Jun 2024 09:28:17:  12000000 
+INFO  @ Tue, 25 Jun 2024 09:28:19:  13000000 
+INFO  @ Tue, 25 Jun 2024 09:28:22:  14000000 
+INFO  @ Tue, 25 Jun 2024 09:28:24:  15000000 
+INFO  @ Tue, 25 Jun 2024 09:28:26:  16000000 
+INFO  @ Tue, 25 Jun 2024 09:28:29:  17000000 
+INFO  @ Tue, 25 Jun 2024 09:28:31:  18000000 
+INFO  @ Tue, 25 Jun 2024 09:28:34:  19000000 
+INFO  @ Tue, 25 Jun 2024 09:28:36:  20000000 
+INFO  @ Tue, 25 Jun 2024 09:28:38:  21000000 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #1 mean fragment size is determined as 259 bp from treatment 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #1 fragment size = 259 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #1  total fragments in treatment: 21000359 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #1 finished! 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #2 Build Peak Model... 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #2 Skipped... 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #2 Use 259 as fragment length 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #3 Call peaks... 
+INFO  @ Tue, 25 Jun 2024 09:28:44: #3 Pre-compute pvalue-qvalue table... 
+INFO  @ Tue, 25 Jun 2024 09:29:05: #3 Call peaks for each chromosome... 
+INFO  @ Tue, 25 Jun 2024 09:29:14: #4 Write output xls file... /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed_SREBP1i-2_S14/24hr_Fed_SREBP1i-2_S14_peaks.xls 
+INFO  @ Tue, 25 Jun 2024 09:29:15: #4 Write peak in narrowPeak format file... /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed_SREBP1i-2_S14/24hr_Fed_SREBP1i-2_S14_peaks.narrowPeak 
+INFO  @ Tue, 25 Jun 2024 09:29:15: #4 Write summits bed file... /ix/cigcore/proj/delgoffe/result//Delgoffe_ATAC_05_31_2024/peak_calling_MACS2/24hr_Fed_SREBP1i-2_S14/24hr_Fed_SREBP1i-2_S14_summits.bed 
+INFO  @ Tue, 25 Jun 2024 09:29:15: Done! 

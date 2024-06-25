@@ -1,2 +1,19 @@
 0hr_Fasted1_S1
 [bam_sort_core] merging from 16 files and 8 in-memory blocks...
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0000.bam
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0000.bam": File exists
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0001.bam
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0001.bam": File exists
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0003.bam
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0002.bam
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0002.bam": File exists
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0003.bam": File exists
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0007.bam
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0006.bam
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0005.bam
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0004.bam
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0004.bam": File exists
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0005.bam": File exists
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0006.bam": File exists
+samtools sort: failed to create temporary file "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT_sort.bam.tmp.0007.bam": File exists
+[W::bam_hdr_read] EOF marker is absent. The input is probably truncated

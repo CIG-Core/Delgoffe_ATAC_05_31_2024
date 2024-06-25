@@ -1,2 +1,6 @@
 0hr_Fasted3_S3
 [bam_sort_core] merging from 16 files and 8 in-memory blocks...
+[E::bgzf_read] Read block operation failed with error 2 after 0 of 4 bytes
+samtools sort: truncated file. Aborting
+[E::hts_open_format] Failed to open file /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted3_S3_mapq30_noDup_noMT_sort.bam
+samtools index: failed to open "/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted3_S3_mapq30_noDup_noMT_sort.bam": No such file or directory

@@ -1,0 +1,3 @@
+0hr_Fed2_S5
+/var/spool/slurmd/job3367777/slurm_script: line 24: /ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/shift_reads/0hr_Fed2_S5_shifted.bam: No such file or directory
+*****WARNING: Query VH01587:144:AAFMGYTM5:1:1103:28286:45282 is marked as paired, but its mate does not occur next to it in your BAM file.  Skipping. 

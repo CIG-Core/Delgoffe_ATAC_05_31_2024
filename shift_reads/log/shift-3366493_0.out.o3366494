@@ -1,0 +1,9 @@
+0hr_Fasted1_S1
+Traceback (most recent call last):
+  File "/ihome/crc/install/deeptools/3.3.0/python3.7/bin/alignmentSieve", line 12, in <module>
+    main(args)
+  File "/ihome/crc/install/deeptools/3.3.0/python3.7/lib/python3.7/site-packages/deeptools/alignmentSieve.py", line 400, in main
+    pysam.samtools.cat(*arguments)
+  File "/ihome/crc/install/deeptools/3.3.0/python3.7/lib/python3.7/site-packages/pysam/utils.py", line 75, in __call__
+    stderr))
+pysam.utils.SamtoolsError: "samtools returned with error 1: stdout=, stderr=samtools cat: fail to open output file '/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/ATACshift/0hr_Fasted1_S1_shifted.bam': No such file or directory\n"

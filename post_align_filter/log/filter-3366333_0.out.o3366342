@@ -1,2 +1,6 @@
 0hr_Fasted1_S1
 [bam_sort_core] merging from 16 files and 8 in-memory blocks...
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+rm: cannot remove ‘/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_noMT.bam’: No such file or directory
+rm: cannot remove ‘/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_noDup_noMT.bam’: No such file or directory
+rm: cannot remove ‘/ix/cigcore/proj/delgoffe/result/Delgoffe_ATAC_05_31_2024/post_align_filter/0hr_Fasted1_S1_mapq30_noDup_noMT.bam’: No such file or directory

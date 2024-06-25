@@ -1,0 +1,114 @@
+---
+title: "QC post alignmnet (before peak calling)"
+author: 
+- name: "Computational Immunogenomics Core (CIG Core)"
+  affiliation: "Center for Systems Immunology, University of Pittsburgh"
+  email: "sis186@pitt.edu"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true # table of content true
+    toc_depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true  ## if you want number sections at each table header
+    theme: "default" # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
+---
+
+ATACseqQC Vignette	HTML
+<https://bioconductor.org/packages/release/bioc/vignettes/ATACseqQC/inst/doc/ATACseqQC.html>
+
+Paper: <https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1929-3>
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE, results="hide", warning=FALSE, message=FALSE)
+suppressPackageStartupMessages({
+  library(ATACseqQC)
+  library(ChIPpeakAnno)
+  library(BSgenome.Mmusculus.UCSC.mm10) # mouse
+  library(TxDb.Mmusculus.UCSC.mm10.knownGene) # mouse
+  #library(phastCons100way.UCSC.mm10) # mouse
+  library(GenomicScores) 
+  library(MotifDb)
+  library(GenomicAlignments)
+  library(ggplot2)
+})
+
+# gsco <- getGScores("phastCons60way.UCSC.mm10")
+
+# BiocManager::install(c("ATACseqQC", "ChIPpeakAnno", "MotifDb", "GenomicAlignments",
+#              "BSgenome.Hsapiens.UCSC.mm10", "TxDb.Hsapiens.UCSC.mm10.knownGene",
+#              "phastCons100way.UCSC.mm10"))
+# mm10 for mouse
+proj_path <- "/ix/cigcore/proj/delgoffe"
+data_path <- file.path(proj_path, "data", "Delgoffe_ATAC_05_31_2024")
+resPath <- gsub(pattern="data", replacement="result", data_path)
+experiment <- "after_alignment_QC"
+experimentPath <- file.path(resPath, experiment)
+dir.create(experimentPath, showWarnings = TRUE, recursive = TRUE)
+fragmentPath <- file.path(experimentPath, "frag_distribution")
+dir.create(fragmentPath, showWarnings = TRUE, recursive = TRUE)
+```
+
+
+```{r}
+bam_directory <- file.path(resPath, "post_align_filter")
+bamfile <- list.files(bam_directory, pattern = "_mapq30_noDup_noMT_sort.bam$", full.names = TRUE)
+bamfile.labels <- gsub("_mapq30_noDup_noMT_sort.bam", "", basename(bamfile))
+```
+
+```{r}
+source(system.file("extdata", "IGVSnapshot.R", package = "ATACseqQC"))
+```
+
+
+
+# Fragment size distribution
+
+First, there should be a large proportion of reads with less than 100 bp, which represents the nucleosome-free region. Second, the fragment size distribution should have a clear periodicity, which is evident in the inset figure, indicative of nucleosome occupacy (present in integer multiples).
+
+Typically, a successful ATAC-seq experiment should generate a fragment size distribution plot with decreasing and periodical peaks corresponding to the nucleosome-free regions (NFR) (< 100 bp) and mono-, di-, and tri-nucleosomes (~ 200, 400, 600 bp, respectively)
+
+Therefore, Typical fragment size distribution plot shows enrichment around 100 and 200 bp, indicating nucleosome-free and mono-nucleosome-bound fragments. 
+
+```{r}
+for (i in seq_along(bamfile)) {
+  png(file = file.path(fragmentPath,paste0(bamfile.labels[i], "_fragSizeDist.png")))
+  fragSizeDist(bamfile[i], bamfile.labels[i])
+  dev.off()
+}
+```
+
+# Transcription Start Site (TSS) Enrichment Score
+
+TSS enrichment score is a raio between aggregate distribution of reads centered on TSSs and that flanking the corresponding TSSs. TSS score = the depth of TSS (each 100bp window within 1000 bp each side) / the depth of end flanks (100bp each end). 
+
+TSS enrichment score is calculated according to the definition at https://www.encodeproject.org/data-standards/terms/#enrichment. 
+
+```{r}
+bam_directory <- file.path(fragmentPath, "shift_reads_alignmentSieve")
+shiftedbamfile <- list.files(bam_directory, pattern = "_shifted.bam$", full.names = TRUE)
+bamfile.labels <- gsub("_shifted.bam", "", basename(shiftedbamfile))
+txs <- transcripts(TxDb.Mmusculus.UCSC.mm10.knownGene)
+
+
+
+for (i in seq_along(shiftedbamfile)) {
+  png(file = file.path(experimentPath, paste0(bamfile.labels[i], "_TSS_Enrichment.png")))
+  which <- as(seqinfo(Mmusculus)["chr1"], "GRanges")
+  gal <- readBamFile(shiftedbamfile[i], which=which)
+  tsse <- TSSEscore(gal, txs)
+  tsse_score <- tsse$TSSEscore
+  plot(100 * (-9:10 - 0.5), tsse$values, type = "b", 
+       xlab = "Distance to TSS",
+       ylab = "Aggregate TSS Score",
+       main = paste("TSS Enrichment Score\n", tsse_score))
+  dev.off()
+}
+
+
+```
+
+
